@@ -18,7 +18,7 @@ class AProjectileRocket;
 class USoundCue;
 
 UCLASS()
-class SYNTHETICA_API AFighterAircraft : public AAircraft
+class AIRCRAFT_API AFighterAircraft : public AAircraft
 {
 	GENERATED_BODY()
 	

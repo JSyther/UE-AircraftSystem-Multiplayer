@@ -1,11 +1,11 @@
-// @2023 All rights reversed by Reverse-Alpha Studios
+// @2023 All rights reversed
 
 /**
- * The AAerodyne class represents the base class for aerodyne vehicles in the game.
- * Aerodyne vehicles encompass a variety of aircraft types, including fighters, transports, and other aerial crafts.
- * This class inherits functionality from the APawn class and serves as a foundation for specific aerodyne types.
- * It provides basic attributes and functionalities common to all aerodyne vehicles, such as engine management and input handling.
- * Derived classes can extend and specialize the behavior of aerodyne vehicles according to their specific roles and purposes.
+ * The AAircraft class represents the base class for aircraft vehicles in the game.
+ * Aircraft vehicles encompass a variety of flying vehicle types, including fighters, transports, and other aerial crafts.
+ * This class inherits functionality from the APawn class and serves as a foundation for specific aircraft types.
+ * It provides basic attributes and functionalities common to all aircraft vehicles, such as engine management and input handling.
+ * Derived classes can extend and specialize the behavior of aircraft vehicles according to their specific roles and purposes.
  */
 
 #pragma once
@@ -14,10 +14,10 @@
 #include "GameFramework/Pawn.h"
 #include "InputActionValue.h"
 
-#include "Aerodyne.generated.h"
+#include "Aircraft.generated.h"
 
 
-#define TRACE_MAX_LENGHT 80000.0f
+#define TRACE_MAX_LENGTH 80000.0f
 #define LOG_WARNING(Format)  UE_LOG(LogTemp, Warning, TEXT(Format));
 #pragma region Pre-Classes&Components
 
@@ -37,25 +37,26 @@ class UNiagaraSystem;
 class UInputMappingContext;
 class UInputAction;
 #pragma endregion
-UENUM(BlueprintType)
-enum class EAeroEngineTypes : uint8
-{
-	EAET_InitialEngine		UMETA(DisplayName = "Initial"),
-	EAET_EngineStarted		UMETA(DisplayName = "EngineStarted"),
-	EAET_EngineStopped		UMETA(DisplayName = "EngineStopped"),
-	EAET_Idle				UMETA(DisplayName = "Idle"),
 
-	EAET_MAX				UMETA(DisplayName = "DefaultMAX")
+UENUM(BlueprintType)
+enum class EAircraftEngineTypes : uint8
+{
+	EACET_InitialEngine		UMETA(DisplayName = "Initial"),
+	EACET_EngineStarted		UMETA(DisplayName = "EngineStarted"),
+	EACET_EngineStopped		UMETA(DisplayName = "EngineStopped"),
+	EACET_Idle				UMETA(DisplayName = "Idle"),
+
+	EACET_MAX				UMETA(DisplayName = "DefaultMAX")
 };
 
 UCLASS()
-class SYNTHETICA_API AAerodyne : public APawn
+class SYNTHETICA_API AAircraft : public APawn
 {
 	GENERATED_BODY()
 
 #pragma region General
 public:
-	AAerodyne();
+	AAircraft();
 
 protected:
 	virtual void BeginPlay() override;
@@ -65,27 +66,29 @@ protected:
 	virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
 
 #pragma endregion
+
 #pragma region OtherClasses
 	/*Variables*/
 private:
-	UPROPERTY(ReplicatedUsing = OnRep_AeroEngineTypes)
-	EAeroEngineTypes AeroEngineTypes = EAeroEngineTypes::EAET_InitialEngine;
+	UPROPERTY(ReplicatedUsing = OnRep_AircraftEngineTypes)
+	EAircraftEngineTypes AircraftEngineTypes = EAircraftEngineTypes::EACET_InitialEngine;
 
 private:
 	UFUNCTION()
-	void OnRep_AeroEngineTypes();
-	void Handle_AeroEngineTypes();
+	void OnRep_AircraftEngineTypes();
+	void Handle_AircraftEngineTypes();
 	void Handle_InitialEngine();
 	void Handle_EngineStarted();
 	void Handle_EngineStopped();
 	void Handle_Idle();
 
 public:
-	EAeroEngineTypes GetAeroEngineTypes() const { return AeroEngineTypes; }
-	void			 SetAeroEngineTypes(EAeroEngineTypes Type) { AeroEngineTypes = Type; }
+	EAircraftEngineTypes GetAircraftEngineTypes() const { return AircraftEngineTypes; }
+	void			 SetAircraftEngineTypes(EAircraftEngineTypes Type) { AircraftEngineTypes = Type; }
 
-	void CheckAeroEngineTypes();
+	void CheckAircraftEngineTypes();
 #pragma endregion
+
 #pragma region Overlapping
 private:
 	UFUNCTION()
@@ -94,12 +97,13 @@ private:
 	UFUNCTION()
 	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 #pragma endregion
+
 #pragma region Components
 private:
 	UPROPERTY(EditAnywhere, Category = InputSettings)
 	UInputAction*			StartOrStopEngineInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)			
-	UInputMappingContext*	AerodyneMappingContext;
+	UInputMappingContext*	AircraftMappingContext;
 	UPROPERTY(EditAnywhere, Category = InputSettings)	
 	UInputAction*			ThrottleInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
@@ -124,11 +128,11 @@ private:
 protected:
 	UPROPERTY(EditAnywhere)		UArrowComponent*	  ExitArrow;
 	UPROPERTY(EditAnywhere)		UBoxComponent*		  AreaCollision;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AerodynesMesh;
+	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AircraftMesh;
 	UPROPERTY(EditAnywhere)		UStaticMeshComponent* FlapLeft;
 	UPROPERTY(EditAnywhere)		UStaticMeshComponent* FlapRight;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RutterRight;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RutterLeft;
+	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RudderRight;
+	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RudderLeft;
 	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AileronLeft;
 	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AileronRight;
 	UPROPERTY(EditAnywhere)		UStaticMeshComponent* ElevatorLeft;
@@ -138,7 +142,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  BehindCamera;
 	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  FrontCamera;
 	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  InteriorCamera;
-	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  TargettingAerialStrikeCamera;
+	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  TargetingAerialStrikeCamera;
 
 
 private:
@@ -149,8 +153,9 @@ private:
 	ABaseGameMode* BaseGameMode;
 
 public:
-	FORCEINLINE UInputMappingContext* Get_AerodyneMappingContext() const { return AerodyneMappingContext; }
+	FORCEINLINE UInputMappingContext* Get_AircraftMappingContext() const { return AircraftMappingContext; }
 #pragma endregion
+
 #pragma region Inputs
 private:
 	void EnhancedInputLocalPlayerSubsystem();
@@ -173,7 +178,7 @@ private:
 	void InputAction_StartOrStopEngines		(	/*EngineFunction*/		   );
 
 	void InputAction_BoosterActivate		(	/*Booster Activate*/	   );
-	void InputAction_BoosterDeActivate		(							   );
+	void InputAction_BoosterDeactivate		(							   );
 
 	void InputAction_SwitchCamera			(const FInputActionValue& Value);
 	void InputAction_ZoomInOut				(const FInputActionValue& Value);
@@ -217,11 +222,12 @@ private:
 public:
 	bool GetPlayerEnteredVehicle()	 const { return bPlayerEnteredVehicle; }
 	bool IsEngineStarted()			 const { return bEngineStarted; }
-	bool IsAerodynesBoostActivated() const { return bBoostActivated; }
+	bool IsAircraftBoostActivated() const { return bBoostActivated; }
 
 	void SetPlayerEnteredVehicle(bool bPlayerEnter) { bPlayerEnteredVehicle = bPlayerEnter; }
 	void StartEngines(bool bStart) { bEngineStarted = bStart; }
 #pragma endregion
+
 #pragma region Movement-Probs
 protected:
 /*Dynamics*/
@@ -273,18 +279,20 @@ protected:
 
 /*AxisControllerValues*/
 	UPROPERTY(EditAnywhere)
-	float AeroPitchControlSpeed		= 0.25f;
+	float AircraftPitchControlSpeed		= 0.25f;
 	UPROPERTY(EditAnywhere)
-	float AeroYawControlSpeed		= 0.50f;
+	float AircraftYawControlSpeed		= 0.50f;
 	UPROPERTY(EditAnywhere)
-	float AeroRollControlSpeed		= 1.50f;
+	float AircraftRollControlSpeed		= 1.50f;
 #pragma endregion
+
 #pragma region Adjustable Properties
 private:
 UPROPERTY(EditAnywhere)
 float AxisInterpolationSpeed = 1.0f;
 
 #pragma endregion
+
 #pragma region Camera
 private:
 UPROPERTY(EditAnywhere, Category = "DeveloperProperties")
@@ -298,8 +306,9 @@ void PlayTakeOffCameraShake(TSubclassOf<UCameraShakeBase> CameraShake);
 
 protected:
 	bool Cache_InteriorCamera = false;
-	bool bCameraSwitchedWhileTargettingCameraOn = false;
+	bool bCameraSwitchedWhileTargetingCameraOn = false;
 #pragma endregion
+
 #pragma region FXs
 protected:
 	UPROPERTY(EditAnywhere)
@@ -341,6 +350,7 @@ protected:
 	virtual void SpawnTrailSystem(bool bMiddleEngine, bool bRightEngine, bool bLeftEngine, bool bRightSecondEngine, bool bLeftSecondEngine);
 	void UpdateThrusters();
 #pragma endregion
+
 #pragma region Sounds
 /*JetEngine*/
 	UAudioComponent* JetEngineAudioComponent		 = nullptr;
@@ -368,8 +378,8 @@ protected:
 	bool bAxisSound = false;
 
 
-	void Play_AeroDynamicSounds();
-	void Local_OutsiteJetSound(USoundCue* OutsiteSound);
+	void Play_AerodynamicSounds();
+	void Local_OutsideJetSound(USoundCue* OutsideSound);
 
 /*Radio*/
 	bool bRadioStarted = false;
@@ -382,26 +392,29 @@ protected:
 
 	void Play_Radio();
 #pragma endregion
+
 #pragma region Replications
 private:
 	UPROPERTY(EditAnywhere, Category = "ReplicationSound", Replicated)
-	USoundCue* OutsiteJetSound;
+	USoundCue* OutsideJetSound;
 
 	UPROPERTY()
-	UAudioComponent* OutsiteJetSoundLoopComponent;
+	UAudioComponent* OutsideJetSoundLoopComponent;
 
 	UPROPERTY(EditAnywhere, Category = "ReplicationSound")
-	USoundAttenuation* OutsiteJetSoundLoopingSoundAttenuation;
+	USoundAttenuation* OutsideJetSoundLoopingSoundAttenuation;
 
 #pragma endregion
+
 #pragma region ReportSystems
 private:
 	void ReportPlayerToServer(FString PlayerName, FString ReportReason);
 #pragma endregion
+
 #pragma region Attributes - Stats
 private:
-	bool bAerodyneDestroyed = false;
-	bool bAeroShieldBreak	= false;
+	bool bAircraftDestroyed = false;
+	bool bAircraftShieldBreak	= false;
 
 	float Health		= 500.0f;
 	float Shield		= 500.0f;
@@ -455,7 +468,7 @@ private:
 	/*Server & Multicast*/
 	/*Replications*/
 	UFUNCTION(NetMulticast, Reliable)
-	void Multicast_EnableAndSimulateAerodynPhysics();
+	void Multicast_EnableAndSimulateAircraftPhysics();
 
 #pragma endregion
 };

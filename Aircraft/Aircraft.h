@@ -50,7 +50,7 @@ enum class EAircraftEngineTypes : uint8
 };
 
 UCLASS()
-class SYNTHETICA_API AAircraft : public APawn
+class AIRCRAFT_API AAircraft : public APawn
 {
 	GENERATED_BODY()
 

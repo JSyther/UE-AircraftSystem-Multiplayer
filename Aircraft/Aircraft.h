@@ -84,7 +84,7 @@ private:
 
 public:
 	EAircraftEngineTypes GetAircraftEngineTypes() const { return AircraftEngineTypes; }
-	void			 SetAircraftEngineTypes(EAircraftEngineTypes Type) { AircraftEngineTypes = Type; }
+	void SetAircraftEngineTypes(EAircraftEngineTypes Type) { AircraftEngineTypes = Type; }
 
 	void CheckAircraftEngineTypes();
 #pragma endregion

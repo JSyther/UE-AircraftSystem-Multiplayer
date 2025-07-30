@@ -93,7 +93,7 @@ public:
 private:
 	UFUNCTION()
 	void OnSphereOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
+	
 	UFUNCTION()
 	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 #pragma endregion
@@ -101,48 +101,48 @@ private:
 #pragma region Components
 private:
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			StartOrStopEngineInputAction;
+	UInputAction* StartOrStopEngineInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)			
-	UInputMappingContext*	AircraftMappingContext;
+	UInputMappingContext* AircraftMappingContext;
 	UPROPERTY(EditAnywhere, Category = InputSettings)	
-	UInputAction*			ThrottleInputAction;
+	UInputAction* ThrottleInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			PitchMovementInputAction;
+	UInputAction* PitchMovementInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			YawMovementInputAction;
+	UInputAction* YawMovementInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			RollMovementInputAction;
+	UInputAction* RollMovementInputAction;
 
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			BoosterInputAction;
+	UInputAction* BoosterInputAction;
 
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			SwitchCameraInputAction;
+	UInputAction* SwitchCameraInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)			
-	UInputAction*			ZoomInOutInputAction;
+	UInputAction* ZoomInOutInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			RadioInputAction;
+	UInputAction* RadioInputAction;
 	UPROPERTY(EditAnywhere, Category = InputSettings)
-	UInputAction*			ExitVehicleInputAction;
+	UInputAction* ExitVehicleInputAction;
 
 protected:
-	UPROPERTY(EditAnywhere)		UArrowComponent*	  ExitArrow;
-	UPROPERTY(EditAnywhere)		UBoxComponent*		  AreaCollision;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AircraftMesh;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* FlapLeft;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* FlapRight;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RudderRight;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* RudderLeft;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AileronLeft;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* AileronRight;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* ElevatorLeft;
-	UPROPERTY(EditAnywhere)		UStaticMeshComponent* ElevatorRight;
+	UPROPERTY(EditAnywhere) UArrowComponent* ExitArrow;
+	UPROPERTY(EditAnywhere) UBoxComponent* AreaCollision;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* AircraftMesh;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* FlapLeft;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* FlapRight;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* RudderRight;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* RudderLeft;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* AileronLeft;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* AileronRight;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* ElevatorLeft;
+	UPROPERTY(EditAnywhere) UStaticMeshComponent* ElevatorRight;
 	
-	UPROPERTY(VisibleAnywhere)	USpringArmComponent*  SpringArm;
-	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  BehindCamera;
-	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  FrontCamera;
-	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  InteriorCamera;
-	UPROPERTY(VisibleAnywhere)	UCameraComponent*	  TargetingAerialStrikeCamera;
+	UPROPERTY(VisibleAnywhere) USpringArmComponent*  SpringArm;
+	UPROPERTY(VisibleAnywhere) UCameraComponent* BehindCamera;
+	UPROPERTY(VisibleAnywhere) UCameraComponent* FrontCamera;
+	UPROPERTY(VisibleAnywhere) UCameraComponent* InteriorCamera;
+	UPROPERTY(VisibleAnywhere) UCameraComponent* TargetingAerialStrikeCamera;
 
 
 private:
@@ -162,29 +162,29 @@ private:
 
 /*Axis Functions*/
 
-	void InputAxis_ThrottleControl			(const FInputActionValue& Value);
+	void InputAxis_ThrottleControl (const FInputActionValue& Value);
 	void InputAxis_ThrottleControlReleased  (const FInputActionValue& Value);
 
-	void InputAxis_PitchControl				(const FInputActionValue& Value);
-	void InputAxis_PitchControlReleased		(const FInputActionValue& Value);
+	void InputAxis_PitchControl (const FInputActionValue& Value);
+	void InputAxis_PitchControlReleased (const FInputActionValue& Value);
 
-	void InputAxis_YawControl				(const FInputActionValue& Value);
-	void InputAxis_YawControlReleased		(const FInputActionValue& Value);
-
-	void InputAxis_RollControl				(const FInputActionValue& Value);
-	void InputAxis_RollControlReleased		(const FInputActionValue& Value);
+	void InputAxis_YawControl (const FInputActionValue& Value);
+	void InputAxis_YawControlReleased (const FInputActionValue& Value);
+ 
+	void InputAxis_RollControl (const FInputActionValue& Value);
+	void InputAxis_RollControlReleased (const FInputActionValue& Value);
 
 /*Action Functions*/
-	void InputAction_StartOrStopEngines		(	/*EngineFunction*/		   );
+	void InputAction_StartOrStopEngines (	/*EngineFunction*/		   );
 
-	void InputAction_BoosterActivate		(	/*Booster Activate*/	   );
-	void InputAction_BoosterDeactivate		(							   );
+	void InputAction_BoosterActivate (	/*Booster Activate*/	   );
+	void InputAction_BoosterDeactivate ();
 
-	void InputAction_SwitchCamera			(const FInputActionValue& Value);
-	void InputAction_ZoomInOut				(const FInputActionValue& Value);
+	void InputAction_SwitchCamera (const FInputActionValue& Value);
+	void InputAction_ZoomInOut (const FInputActionValue& Value);
 
-	void InputAction_Radio					(const FInputActionValue& Value);
-	void InputAction_ExitVehicle			(const FInputActionValue& Value);
+	void InputAction_Radio (const FInputActionValue& Value);
+	void InputAction_ExitVehicle (const FInputActionValue& Value);
 
 // StoredVariables
 	float StoredInputThrottle;
@@ -193,25 +193,25 @@ private:
 	float StoredInputRoll;
 
 /*Functions*/
-	void AutoTakeOff				(float DeltaTime);
-	void UpdatePosition				(float DeltaTime);
+	void AutoTakeOff (float DeltaTime);
+	void UpdatePosition (float DeltaTime);
 
-	void UpdateAxisByInputValues	(float ThrottleValue, float PitchValue, float YawValue, float RollValue);
-	void ThrottleUpdate				(float InputThrottleValue);
-	void PitchUpdate				(float InputPitchValue);
-	void YawUpdate					(float InputYawValue);
-	void RollUpdate					(float InputRollValue);
+	void UpdateAxisByInputValues (float ThrottleValue, float PitchValue, float YawValue, float RollValue);
+	void ThrottleUpdate (float InputThrottleValue);
+	void PitchUpdate (float InputPitchValue);
+	void YawUpdate (float InputYawValue);
+	void RollUpdate (float InputRollValue);
 
-	void CalculateGravity			(float DeltaSeconds, float AppliedGravityInput);
+	void CalculateGravity (float DeltaSeconds, float AppliedGravityInput);
 	float OutGravity;
 
 /*Booleans*/
 private:
-	bool bEngineStarted			= false;
-	bool bPlayerEnteredVehicle	= false;
-	bool bBoostActivated		= false;
-	bool bUpdateThrusters		= false;
-	bool bAircraftTakenOff		= false;
+	bool bEngineStarted = false;
+	bool bPlayerEnteredVehicle = false;
+	bool bBoostActivated = false;
+	bool bUpdateThrusters = false;
+	bool bAircraftTakenOff = false;
 
 
 /*AircraftTakeOff*/
@@ -220,8 +220,8 @@ private:
 	float AircraftTakeOffDelay = 2.0f;
 /*Getter and Setters*/
 public:
-	bool GetPlayerEnteredVehicle()	 const { return bPlayerEnteredVehicle; }
-	bool IsEngineStarted()			 const { return bEngineStarted; }
+	bool GetPlayerEnteredVehicle() const { return bPlayerEnteredVehicle; }
+	bool IsEngineStarted() const { return bEngineStarted; }
 	bool IsAircraftBoostActivated() const { return bBoostActivated; }
 
 	void SetPlayerEnteredVehicle(bool bPlayerEnter) { bPlayerEnteredVehicle = bPlayerEnter; }
@@ -247,43 +247,43 @@ protected:
 protected:
 /*Editables*/
 	UPROPERTY(EditAnywhere)
-	float MaxThrustSpeed			= 4000.0f;
+	float MaxThrustSpeed = 4000.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MinThrustSpeedThreshold	= 1000.0f;
+	float MinThrustSpeedThreshold = 1000.0f;
 
 	UPROPERTY(EditAnywhere)
-	float ThrustMultiplier			= 1000.0f;
+	float ThrustMultiplier = 1000.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MaxBoostSpeed				= 1500.0f;
+	float MaxBoostSpeed = 1500.0f;
 
 	UPROPERTY(EditAnywhere)
-	float GravitationalForce		= 2000.0f;
+	float GravitationalForce = 2000.0f;
 
 	UPROPERTY(EditAnywhere)
-	float AirDragFactor				= 0.5f;
+	float AirDragFactor = 0.5f;
 
 /*ControlSurfaces*/
 	UPROPERTY(EditAnywhere)
-	float MaxFlapPitch				= 150.0f;
+	float MaxFlapPitch = 150.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MaxElevatorPitch			= 25.0f;
+	float MaxElevatorPitch = 25.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MaxRudderYaw				= 45.0f;
+	float MaxRudderYaw = 45.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MaxAileronPitch			= 45.0f;
+	float MaxAileronPitch = 45.0f;
 
 /*AxisControllerValues*/
 	UPROPERTY(EditAnywhere)
-	float AircraftPitchControlSpeed		= 0.25f;
+	float AircraftPitchControlSpeed = 0.25f;
 	UPROPERTY(EditAnywhere)
-	float AircraftYawControlSpeed		= 0.50f;
+	float AircraftYawControlSpeed = 0.50f;
 	UPROPERTY(EditAnywhere)
-	float AircraftRollControlSpeed		= 1.50f;
+	float AircraftRollControlSpeed = 1.50f;
 #pragma endregion
 
 #pragma region Adjustable Properties
@@ -327,25 +327,25 @@ protected:
 	bool bLeftSecondEngineType = false;
 
 	UPROPERTY(EditAnywhere)
-	UNiagaraSystem*		ThrusterFX;
+	UNiagaraSystem* ThrusterFX;
 
 	UPROPERTY()
-	UNiagaraComponent*	MiddleThrusterFXs;
+	UNiagaraComponent* MiddleThrusterFXs;
 
 	UPROPERTY()
-	UNiagaraComponent*	RightThrusterFXs;
+	UNiagaraComponent* RightThrusterFXs;
 
 	UPROPERTY()
-	UNiagaraComponent*	LeftThrusterFXs;
+	UNiagaraComponent* LeftThrusterFXs;
 
 	UPROPERTY()
-	UNiagaraComponent*  MiddleFrontThrusterFXs;
+	UNiagaraComponent* MiddleFrontThrusterFXs;
 
 	UPROPERTY()
-	UNiagaraComponent*	RightFrontThrusterFXs;
+	UNiagaraComponent* RightFrontThrusterFXs;
 
 	UPROPERTY()
-	UNiagaraComponent*	LeftFrontThrusterFXs;
+	UNiagaraComponent* LeftFrontThrusterFXs;
 
 	virtual void SpawnTrailSystem(bool bMiddleEngine, bool bRightEngine, bool bLeftEngine, bool bRightSecondEngine, bool bLeftSecondEngine);
 	void UpdateThrusters();
@@ -414,14 +414,14 @@ private:
 #pragma region Attributes - Stats
 private:
 	bool bAircraftDestroyed = false;
-	bool bAircraftShieldBreak	= false;
+	bool bAircraftShieldBreak = false;
 
-	float Health		= 500.0f;
-	float Shield		= 500.0f;
-	float MaxHealth		= 500.0f;
-	float MaxShield		= 500.0f;
+	float Health = 500.0f;
+	float Shield = 500.0f;
+	float MaxHealth = 500.0f;
+	float MaxShield = 500.0f;
 
-	float BoosterFuel	= 1500.0f;
+	float BoosterFuel = 1500.0f;
 #pragma endregion
 
 #pragma region Damage&Destruction-System
@@ -430,7 +430,7 @@ private:
 	class UParticleSystem* ExplosionParticle;
 
 	UPROPERTY(EditAnywhere, Category = "DeveloperProperties")
-	class USoundCue*	   ExplosionSound;
+	class USoundCue* ExplosionSound;
 
 	UFUNCTION()
 	void ReceiveDamage
@@ -445,17 +445,17 @@ private:
 	void VehicleExplosionDamage();
 	void VehicleDestruction();
 /*Numerical*/
-	float ExplosionItselfDamage		 = FMath::RandRange(100.0f, 125.0f);
-	float MinimumExplosiveDamage	 = FMath::RandRange(50.0f, 100.0f);
+	float ExplosionItselfDamage = FMath::RandRange(100.0f, 125.0f);
+	float MinimumExplosiveDamage = FMath::RandRange(50.0f, 100.0f);
 
 	UPROPERTY(EditAnywhere, Category = "DeveloperProperties")
-	float DamageInnerRadius			 = 500.0f;
+	float DamageInnerRadius = 500.0f;
 
 	UPROPERTY(EditAnywhere, Category = "DeveloperProperties")
-	float DamageOuterRadius			 = 1000.0f;
+	float DamageOuterRadius = 1000.0f;
 
 	UPROPERTY(EditAnywhere, Category = "DeveloperProperties")
-	float DamageFalloff				 = 1.0f;
+	float DamageFalloff = 1.0f;
 
 /*Destroy Timer*/
 private:

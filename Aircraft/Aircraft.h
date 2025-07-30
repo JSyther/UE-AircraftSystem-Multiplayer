@@ -41,12 +41,12 @@ class UInputAction;
 UENUM(BlueprintType)
 enum class EAircraftEngineTypes : uint8
 {
-	EACET_InitialEngine		UMETA(DisplayName = "Initial"),
-	EACET_EngineStarted		UMETA(DisplayName = "EngineStarted"),
-	EACET_EngineStopped		UMETA(DisplayName = "EngineStopped"),
-	EACET_Idle				UMETA(DisplayName = "Idle"),
+	EACET_InitialEngine UMETA(DisplayName = "Initial"),
+	EACET_EngineStarted UMETA(DisplayName = "EngineStarted"),
+	EACET_EngineStopped UMETA(DisplayName = "EngineStopped"),
+	EACET_Idle UMETA(DisplayName = "Idle"),
 
-	EACET_MAX				UMETA(DisplayName = "DefaultMAX")
+	EACET_MAX UMETA(DisplayName = "DefaultMAX")
 };
 
 UCLASS()
